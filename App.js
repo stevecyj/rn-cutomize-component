@@ -3,11 +3,15 @@ import { StyleSheet, Text, View } from "react-native";
 // import MyButton from "./src/components/Button/MyButton";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import HomeDetailScreen from "./src/screens/HomeDetailScreen";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
 export default function App() {
   const pressMe = () => {
     console.log("你按到我了！");
@@ -20,7 +24,15 @@ export default function App() {
     // </View>
 
     <NavigationContainer>
-      <Tab.Navigator
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="HomeDetailScreen"
+          component={HomeDetailScreen}
+          option={{ title: "Detail" }}
+        />
+      </Stack.Navigator>
+      {/* <Tab.Navigator
         initialRouteName="Profile"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, focused }) => {
@@ -40,7 +52,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
     </NavigationContainer>
   );
 }
