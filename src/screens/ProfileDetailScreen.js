@@ -2,18 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import MyButton from "../components/Button/MyButton";
 
-export default function ProfileScreen(props) {
+export default function ProfileDetailScreen(props) {
   const pressMe = () => {
-    console.log("你按到我了！");
+    console.log("你按到 ProfileDetailScreen 了！");
   };
 
   return (
     <View style={styles.container}>
-      <Text>我是 ProfileScreen</Text>
-      <Button
-        title="goto profile detail screen"
-        onPress={() => props.navigation.push("ProfileDetail")}
-      />
+      <Text>我是 ProfileDetailScreen</Text>
+
       <MyButton custTitle={"按我吧！"} custOnPress={() => pressMe()} />
     </View>
   );
@@ -22,7 +19,7 @@ export default function ProfileScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f3eb",
     alignItems: "center",
     justifyContent: "center",
   },

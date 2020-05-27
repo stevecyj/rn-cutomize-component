@@ -8,9 +8,52 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import HomeDetailScreen from "./src/screens/HomeDetailScreen";
+import ProfileDetailScreen from "./src/screens/ProfileDetailScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+// 用 function 把 stack 單一的 主頁面 和 detail 頁面包起來，記得 return
+function MyHomeStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerStyle: { backgroundColor: "#d291bc" },
+        headerBackTitle: "返回",
+        headerTintColor: "#fee2b3",
+      }}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="HomeDetailScreen"
+        component={HomeDetailScreen}
+        option={{ title: "Detail" }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+//  profilescreen 也用 function 把 主頁 和 detail 包起來
+function MyProfileStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Profile"
+      screenOptions={{
+        headerStyle: { backgroundColor: "#d291bc" },
+        headerBackTitle: "返回-2",
+        headerTintColor: "#ffd31d",
+      }}
+    >
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen
+        name="ProfileDetail"
+        component={ProfileDetailScreen}
+        option={{ title: "MyDetail-2" }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
   const pressMe = () => {
@@ -23,8 +66,7 @@ export default function App() {
     //   <MyButton custTitle={"按我吧！"} custOnPress={() => pressMe()} />
     // </View>
 
-    <NavigationContainer>
-      <Stack.Navigator
+    /* <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
           headerStyle: { backgroundColor: "#d291bc" },
@@ -38,15 +80,17 @@ export default function App() {
           component={HomeDetailScreen}
           option={{ title: "Detail" }}
         />
-      </Stack.Navigator>
-      {/* <Tab.Navigator
-        initialRouteName="Profile"
+      </Stack.Navigator> */
+
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Home"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, focused }) => {
             let iconName;
-            if (route.name == "Home") {
+            if (route.name == "MyHomeStack") {
               iconName = focused ? "ios-aperture" : "ios-information-circle";
-            } else if (route.name == "Profile") {
+            } else if (route.name == "MyProfileStack") {
               iconName = focused ? "ios-rocket" : "ios-baseball";
             }
             return <Ionicons name={iconName} size={25} color={color} />;
@@ -57,9 +101,9 @@ export default function App() {
           inactiveTintColor: "gray",
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-      </Tab.Navigator> */}
+        <Tab.Screen name="MyHomeStack" component={MyHomeStack} />
+        <Tab.Screen name="MyProfileStack" component={MyProfileStack} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
