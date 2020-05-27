@@ -21,10 +21,16 @@ export default function App() {
 
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={() => ({
-          tabBarIcon: ({ color }) => (
-            <Ionicons name={"ios-aperture"} size={25} color={color} />
-          ),
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color }) => {
+            let iconName;
+            if (route.name == "Home") {
+              iconName = "ios-aperture";
+            } else if (route.name == "Profile") {
+              iconName = "ios-rocket";
+            }
+            return <Ionicons name={iconName} size={25} color={color} />;
+          },
         })}
         tabBarOptions={{
           activeTintColor: "tomato",
