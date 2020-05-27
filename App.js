@@ -21,13 +21,14 @@ export default function App() {
 
     <NavigationContainer>
       <Tab.Navigator
+        initialRouteName="Profile"
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ color }) => {
+          tabBarIcon: ({ color, focused }) => {
             let iconName;
             if (route.name == "Home") {
-              iconName = "ios-aperture";
+              iconName = focused ? "ios-aperture" : "ios-information-circle";
             } else if (route.name == "Profile") {
-              iconName = "ios-rocket";
+              iconName = focused ? "ios-rocket" : "ios-baseball";
             }
             return <Ionicons name={iconName} size={25} color={color} />;
           },
