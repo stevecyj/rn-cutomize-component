@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import MyButton from "../components/Button/MyButton";
 
@@ -7,13 +7,22 @@ export default function HomeScreen(props) {
     console.log("你按到我了！");
   };
 
+  const [food, setFood] = useState("candy");
+
+  const changeFood = (foodGet) => {
+    setFood(foodGet);
+  };
   return (
     <View style={styles.container}>
       <Text>我是 HomeScreen</Text>
+      <Text>{food}</Text>
       <Button
         title="到下一頁"
         onPress={() =>
-          props.navigation.push("HomeDetailScreen", { name: "jojo" })
+          props.navigation.push("HomeDetailScreen", {
+            name: "jojo",
+            functionA: (arg) => changeFood(arg),
+          })
         }
       />
       <MyButton custTitle={"按我吧！"} custOnPress={() => pressMe()} />

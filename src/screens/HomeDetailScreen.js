@@ -14,6 +14,10 @@ export default function HomeDetailScreen(props) {
       <Button title="回上一頁" onPress={() => props.navigation.pop()} />
       <Text>{name}</Text>
       <MyButton custTitle={"按我吧！"} custOnPress={() => pressMe()} />
+      <Button
+        title="change first page food"
+        onPress={() => props.route.params.functionA("pineapple")}
+      />
     </View>
   );
 }
