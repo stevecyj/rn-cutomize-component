@@ -12,7 +12,9 @@ export default function HomeScreen(props) {
       <Text>我是 HomeScreen</Text>
       <Button
         title="到下一頁"
-        onPress={() => props.navigation.push("HomeDetailScreen")}
+        onPress={() =>
+          props.navigation.push("HomeDetailScreen", { name: "jojo" })
+        }
       />
       <MyButton custTitle={"按我吧！"} custOnPress={() => pressMe()} />
     </View>
