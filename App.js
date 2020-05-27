@@ -24,7 +24,14 @@ export default function App() {
     // </View>
 
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: { backgroundColor: "#d291bc" },
+          headerBackTitle: "返回",
+          headerTintColor: "#fee2b3",
+        }}
+      >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen
           name="HomeDetailScreen"
