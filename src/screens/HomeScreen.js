@@ -94,17 +94,13 @@ export default function HomeScreen(props) {
     props.navigation.push("HomeDetail", { passProps: cases });
   };
 
-  const renderBook = (cases) => {
+  const renderListItem = (cases) => {
     return (
       <TouchableOpacity onPress={() => showNoticeDetail(cases)}>
-        <View style={styles.MainView}>
-          <View>
-            <View style={{ flex: 1 }}>
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={3}
-                style={styles.MainText}
-              >
+        <View>
+          <View style={styles.MainView}>
+            <View style={styles.MainText}>
+              <Text ellipsizeMode="tail" numberOfLines={3}>
                 {cases.note}
               </Text>
 
@@ -117,7 +113,7 @@ export default function HomeScreen(props) {
               </Text>
             </View>
           </View>
-          <View style={styles.separator}></View>
+          <View style={styles.separator} />
         </View>
       </TouchableOpacity>
     );
@@ -139,7 +135,7 @@ export default function HomeScreen(props) {
       <MyButton custTitle={"按我吧！"} custOnPress={() => pressMe()} /> */}
       <FlatList
         data={dataSource}
-        renderItem={(cases) => renderBook(cases.item)}
+        renderItem={(cases) => renderListItem(cases.item)}
         keyExtractor={(cases) => cases.id}
         style={{ backgroundColor: "#fce8d5" }}
       />
@@ -163,6 +159,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   MainText: {
+    flex: 1,
     color: "black",
     fontSize: 15,
     marginTop: 8,
