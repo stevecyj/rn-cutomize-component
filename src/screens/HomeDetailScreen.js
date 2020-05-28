@@ -8,16 +8,18 @@ export default function HomeDetailScreen(props) {
   };
 
   const name = props.route.params.name || "nothing get";
+  const passProps = props.route.params.passProps || "nothing get";
   return (
     <View style={styles.container}>
       <Text>我是 HomeDetailScreen 嘻嘻</Text>
-      <Button title="回上一頁" onPress={() => props.navigation.pop()} />
+      <Text>{passProps.note}</Text>
+      {/* <Button title="回上一頁" onPress={() => props.navigation.pop()} />
       <Text>{name}</Text>
       <MyButton custTitle={"按我吧！"} custOnPress={() => pressMe()} />
       <Button
         title="change first page food"
         onPress={() => props.route.params.functionA("pineapple")}
-      />
+      /> */}
     </View>
   );
 }

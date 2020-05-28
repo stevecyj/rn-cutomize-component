@@ -90,8 +90,8 @@ export default function HomeScreen(props) {
     setDataSource(book);
   });
 
-  const showNoticeDetail = () => {
-    props.navigation.push("HomeDetail", { passProps: cases });
+  const showNoticeDetail = (cases) => {
+    props.navigation.push("HomeDetailScreen", { passProps: cases });
   };
 
   const renderListItem = (cases) => {
@@ -179,6 +179,6 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 20,
-    height: 40,
+    height: 20,
   },
 });
