@@ -112,6 +112,10 @@ export default function HomeScreen(props) {
                 {cases.date}
               </Text>
             </View>
+            <Image
+              source={require("../../assets/img/chevron-right.png")}
+              style={styles.image}
+            />
           </View>
           <View style={styles.separator} />
         </View>
@@ -172,5 +176,9 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: "#dddddd",
+  },
+  image: {
+    width: 20,
+    height: 40,
   },
 });
