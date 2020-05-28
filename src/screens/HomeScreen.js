@@ -90,26 +90,41 @@ export default function HomeScreen(props) {
     setDataSource(book);
   });
 
+  const showNoticeDetail = () => {
+    props.navigation.push("HomeDetail", { passProps: cases });
+  };
+
   const renderBook = (cases) => {
     return (
-      <TouchableOpacity>
-        <View>
+      <TouchableOpacity onPress={() => showNoticeDetail(cases)}>
+        <View style={styles.MainView}>
           <View>
-            <Image />
+            <View style={{ flex: 1 }}>
+              <Text
+                ellipsizeMode="tail"
+                numberOfLines={3}
+                style={styles.MainText}
+              >
+                {cases.note}
+              </Text>
 
-            <View>
-              <Text></Text>
-
-              <Text></Text>
+              <Text
+                ellipsizeMode="tail"
+                numberOfLines={3}
+                style={styles.DateText}
+              >
+                {cases.date}
+              </Text>
             </View>
           </View>
+          <View style={styles.separator}></View>
         </View>
       </TouchableOpacity>
     );
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       {/* <Text>我是 HomeScreen</Text>
       <Text>{food}</Text>
       <Button
@@ -138,5 +153,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  MainView: {
+    height: 80,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#f9f9f9",
+    padding: 8,
+  },
+  MainText: {
+    color: "black",
+    fontSize: 15,
+    marginTop: 8,
+  },
+  DateText: {
+    marginTop: 8,
+    marginBottom: 8,
+    fontSize: 13,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#dddddd",
   },
 });
