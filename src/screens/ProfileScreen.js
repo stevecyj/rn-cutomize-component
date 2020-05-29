@@ -8,10 +8,12 @@ export default function ProfileScreen(props) {
 
   useEffect(() => {
     loadStorage();
-  });
+    console.log("useEffect");
+  }, []);
 
   const loadStorage = async () => {
     let nameGet = await StorageHelper.getMySetting("name");
+    console.log("loadStorage");
     if (nameGet) {
       setName(nameGet);
     }
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 300,
     borderWidth: 5,
-    borderColor: "gray",
+    borderColor: "darkgray",
     fontSize: 28,
     textAlign: "center",
     color: "white",
