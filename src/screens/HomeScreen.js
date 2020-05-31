@@ -86,9 +86,23 @@ export default function HomeScreen(props) {
   };
 
   useEffect(() => {
-    var book = MOCKED_DATA;
-    setDataSource(book);
-  });
+    // var book = MOCKED_DATA;
+    // setDataSource(book);
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    const apiUrl = "http://laravelgcp.crud.nctu.me/api";
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((responseData) => {
+        setDataSource(responseData.data);
+        console.log(responseData.data);
+      })
+      .catch((err) => {
+        console.log("error 是", err);
+      });
+  };
 
   const showNoticeDetail = (cases) => {
     props.navigation.push("HomeDetailScreen", { passProps: cases });
@@ -101,7 +115,7 @@ export default function HomeScreen(props) {
           <View style={styles.MainView}>
             <View style={styles.MainText}>
               <Text ellipsizeMode="tail" numberOfLines={3}>
-                {cases.note}
+                {cases.name}
               </Text>
 
               <Text
@@ -109,7 +123,7 @@ export default function HomeScreen(props) {
                 numberOfLines={3}
                 style={styles.DateText}
               >
-                {cases.date}
+                {cases.ename}
               </Text>
             </View>
             <Image

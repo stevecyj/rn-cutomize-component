@@ -10,6 +10,12 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import HomeDetailScreen from "./src/screens/HomeDetailScreen";
 import ProfileDetailScreen from "./src/screens/ProfileDetailScreen";
 
+//redux
+import configureStore from "./src/redux/store";
+import { StoreContext } from "redux-react-hook";
+
+const store = configureStore();
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -55,7 +61,7 @@ function MyProfileStack() {
   );
 }
 
-export default function App() {
+function App() {
   const pressMe = () => {
     console.log("你按到我了！");
   };
@@ -116,3 +122,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default MyApp = () => (
+  <StoreContext.Provider value={store}>
+    <App />
+  </StoreContext.Provider>
+);
